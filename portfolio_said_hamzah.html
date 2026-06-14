@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Said Hamzah — IT Developer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:        #090E1C;
+      --bg2:       #111827;
+      --bg3:       #1A2235;
+      --blue:      #3B82F6;
+      --cyan:      #06B6D4;
+      --text:      #E8EEFF;
+      --muted:     #7B8AB8;
+      --border:    rgba(59,130,246,0.18);
+      --grad:      linear-gradient(135deg, #3B82F6 0%, #06B6D4 100%);
+      --mono:      'JetBrains Mono', monospace;
+      --sans:      'Space Grotesk', sans-serif;
+      --body:      'Inter', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--body);
+      font-size: 15px;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 5vw;
+      height: 62px;
+      background: rgba(9,14,28,0.82);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo {
+      font-family: var(--mono);
+      font-size: 14px;
+      color: var(--cyan);
+      letter-spacing: 0.04em;
+    }
+    .nav-links { display: flex; gap: 28px; list-style: none; }
+    .nav-links a {
+      font-family: var(--sans);
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--muted);
+      text-decoration: none;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      transition: color .2s;
+    }
+    .nav-links a:hover { color: var(--text); }
+
+    /* ── HERO ── */
+    #hero {
+      min-height: 100vh;
+      display: flex; align-items: center; justify-content: center;
+      padding: 100px 5vw 60px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-glow {
+      position: absolute;
+      width: 700px; height: 700px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(59,130,246,0.13) 0%, transparent 70%);
+      top: 50%; left: 50%;
+      transform: translate(-50%, -55%);
+      pointer-events: none;
+    }
+    .hero-inner {
+      max-width: 820px; width: 100%;
+      position: relative; z-index: 1;
+    }
+    .hero-tag {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-family: var(--mono); font-size: 12px; color: var(--cyan);
+      border: 1px solid rgba(6,182,212,0.3);
+      padding: 5px 14px; border-radius: 20px;
+      margin-bottom: 28px;
+    }
+    .hero-tag::before { content: '●'; font-size: 8px; animation: blink 1.4s infinite; }
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+
+    h1.hero-name {
+      font-family: var(--sans);
+      font-size: clamp(44px, 8vw, 88px);
+      font-weight: 700;
+      line-height: 1.0;
+      letter-spacing: -0.02em;
+      margin-bottom: 12px;
+    }
+    h1.hero-name .grad-text {
+      background: var(--grad);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero-role {
+      font-family: var(--mono); font-size: 16px;
+      color: var(--muted); margin-bottom: 28px;
+      min-height: 24px;
+    }
+    #typed-role::after { content: '|'; animation: blink 0.8s infinite; margin-left: 2px; }
+    .hero-desc {
+      max-width: 540px; color: var(--muted);
+      font-size: 15px; line-height: 1.8; margin-bottom: 40px;
+    }
+    .hero-cta { display: flex; gap: 14px; flex-wrap: wrap; }
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-family: var(--sans); font-size: 14px; font-weight: 600;
+      padding: 12px 26px; border-radius: 8px;
+      text-decoration: none; cursor: pointer; border: none;
+      transition: transform .18s, box-shadow .18s;
+    }
+    .btn:hover { transform: translateY(-2px); }
+    .btn-primary {
+      background: var(--grad); color: #fff;
+      box-shadow: 0 4px 24px rgba(59,130,246,0.35);
+    }
+    .btn-primary:hover { box-shadow: 0 6px 32px rgba(59,130,246,0.5); }
+    .btn-ghost {
+      background: transparent; color: var(--text);
+      border: 1px solid var(--border);
+    }
+    .btn-ghost:hover { border-color: var(--blue); background: rgba(59,130,246,0.07); }
+
+    /* ── TERMINAL CARD ── */
+    .terminal {
+      margin-top: 52px;
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      max-width: 580px;
+    }
+    .terminal-bar {
+      background: var(--bg3);
+      padding: 10px 16px;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .dot { width: 11px; height: 11px; border-radius: 50%; }
+    .dot-r{background:#FF5F57;} .dot-y{background:#FEBC2E;} .dot-g{background:#28C840;}
+    .terminal-path {
+      margin-left: auto; font-family: var(--mono); font-size: 11px; color: var(--muted);
+    }
+    .terminal-body { padding: 18px 20px; font-family: var(--mono); font-size: 13px; line-height: 2; }
+    .t-line { display: flex; gap: 10px; }
+    .t-prompt { color: var(--cyan); }
+    .t-cmd { color: var(--text); }
+    .t-out { color: var(--muted); padding-left: 20px; }
+    .t-key { color: var(--blue); }
+    .t-val { color: #A5F3FC; }
+
+    /* ── SECTIONS ── */
+    section { padding: 90px 5vw; }
+    .section-label {
+      font-family: var(--mono); font-size: 12px; color: var(--cyan);
+      letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 10px;
+    }
+    h2.section-title {
+      font-family: var(--sans); font-size: clamp(28px, 4vw, 42px);
+      font-weight: 700; letter-spacing: -0.02em; margin-bottom: 48px;
+      line-height: 1.2;
+    }
+    .section-divider {
+      width: 40px; height: 3px;
+      background: var(--grad);
+      border-radius: 2px; margin: 10px 0 40px;
+    }
+
+    /* ── ABOUT ── */
+    #about { background: var(--bg2); }
+    .about-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start;
+      max-width: 1000px;
+    }
+    .about-text p { color: var(--muted); margin-bottom: 16px; }
+    .about-text p:last-child { margin-bottom: 0; }
+    .info-list { display: flex; flex-direction: column; gap: 14px; }
+    .info-item {
+      display: flex; gap: 12px; align-items: flex-start;
+      background: var(--bg3); border: 1px solid var(--border);
+      border-radius: 10px; padding: 14px 18px;
+    }
+    .info-icon { font-size: 18px; flex-shrink: 0; margin-top: 1px; }
+    .info-label { font-family: var(--mono); font-size: 11px; color: var(--muted); }
+    .info-value { font-family: var(--sans); font-weight: 500; font-size: 14px; color: var(--text); }
+
+    /* ── SKILLS ── */
+    #skills { background: var(--bg); }
+    .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; max-width: 1000px; }
+    .skill-card {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px;
+      transition: border-color .2s, transform .2s;
+    }
+    .skill-card:hover { border-color: var(--blue); transform: translateY(-3px); }
+    .skill-card-title {
+      font-family: var(--sans); font-weight: 600; font-size: 14px;
+      color: var(--cyan); margin-bottom: 14px;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .skill-tags { display: flex; flex-wrap: wrap; gap: 7px; }
+    .skill-tag {
+      font-family: var(--mono); font-size: 11px;
+      background: rgba(59,130,246,0.1); color: var(--blue);
+      border: 1px solid rgba(59,130,246,0.2);
+      padding: 3px 10px; border-radius: 20px;
+    }
+
+    /* ── EXPERIENCE ── */
+    #experience { background: var(--bg2); }
+    .timeline { max-width: 760px; position: relative; padding-left: 28px; }
+    .timeline::before {
+      content: ''; position: absolute; left: 0; top: 8px; bottom: 8px;
+      width: 2px; background: var(--border);
+    }
+    .timeline-item { position: relative; margin-bottom: 44px; }
+    .timeline-item:last-child { margin-bottom: 0; }
+    .timeline-dot {
+      position: absolute; left: -35px; top: 4px;
+      width: 14px; height: 14px; border-radius: 50%;
+      background: var(--grad);
+      box-shadow: 0 0 0 4px rgba(59,130,246,0.12);
+    }
+    .tl-company {
+      font-family: var(--mono); font-size: 12px; color: var(--cyan); margin-bottom: 4px;
+    }
+    .tl-role {
+      font-family: var(--sans); font-size: 19px; font-weight: 600; margin-bottom: 2px;
+    }
+    .tl-date {
+      font-family: var(--mono); font-size: 11px; color: var(--muted); margin-bottom: 14px;
+    }
+    .tl-list { list-style: none; display: flex; flex-direction: column; gap: 7px; }
+    .tl-list li {
+      color: var(--muted); font-size: 14px; padding-left: 18px; position: relative;
+    }
+    .tl-list li::before {
+      content: '▸'; position: absolute; left: 0; color: var(--blue); font-size: 12px;
+    }
+
+    /* ── PROJECTS ── */
+    #projects { background: var(--bg); }
+    .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px; max-width: 1000px; }
+    .project-card {
+      background: var(--bg2); border: 1px solid var(--border);
+      border-radius: 14px; padding: 30px;
+      transition: border-color .2s, transform .2s;
+      position: relative; overflow: hidden;
+    }
+    .project-card::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; height: 3px;
+      background: var(--grad);
+    }
+    .project-card:hover { border-color: rgba(6,182,212,0.4); transform: translateY(-4px); }
+    .proj-icon { font-size: 28px; margin-bottom: 16px; }
+    .proj-title {
+      font-family: var(--sans); font-weight: 700; font-size: 18px; margin-bottom: 4px;
+    }
+    .proj-period {
+      font-family: var(--mono); font-size: 11px; color: var(--muted); margin-bottom: 14px;
+    }
+    .proj-desc { color: var(--muted); font-size: 14px; margin-bottom: 18px; }
+    .proj-tech { display: flex; flex-wrap: wrap; gap: 7px; }
+    .proj-badge {
+      font-family: var(--mono); font-size: 11px;
+      background: rgba(6,182,212,0.08); color: var(--cyan);
+      border: 1px solid rgba(6,182,212,0.2);
+      padding: 3px 10px; border-radius: 20px;
+    }
+
+    /* ── CERTIFICATIONS ── */
+    #certifications { background: var(--bg2); }
+    .cert-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; max-width: 1000px; }
+    .cert-card {
+      background: var(--bg3); border: 1px solid var(--border);
+      border-radius: 10px; padding: 18px 20px;
+      display: flex; align-items: flex-start; gap: 14px;
+      transition: border-color .2s;
+    }
+    .cert-card:hover { border-color: var(--blue); }
+    .cert-icon { font-size: 22px; flex-shrink: 0; margin-top: 2px; }
+    .cert-name { font-family: var(--sans); font-weight: 600; font-size: 14px; margin-bottom: 4px; }
+    .cert-issuer { font-size: 12px; color: var(--muted); }
+    .cert-date { font-family: var(--mono); font-size: 11px; color: var(--cyan); margin-top: 4px; }
+
+    /* ── EDUCATION ── */
+    #education { background: var(--bg); }
+    .edu-card {
+      background: var(--bg2); border: 1px solid var(--border);
+      border-radius: 14px; padding: 32px;
+      max-width: 700px; position: relative; overflow: hidden;
+    }
+    .edu-card::after {
+      content: '🎓'; position: absolute;
+      right: 24px; top: 24px; font-size: 40px; opacity: 0.15;
+    }
+    .edu-degree { font-family: var(--sans); font-weight: 700; font-size: 22px; margin-bottom: 4px; }
+    .edu-univ { color: var(--muted); margin-bottom: 4px; }
+    .edu-date { font-family: var(--mono); font-size: 12px; color: var(--cyan); margin-bottom: 20px; }
+    .edu-items { display: flex; flex-direction: column; gap: 8px; }
+    .edu-item {
+      display: flex; gap: 10px; align-items: flex-start;
+      font-size: 14px; color: var(--muted);
+    }
+    .edu-item span:first-child { color: var(--blue); font-size: 12px; margin-top: 3px; }
+
+    /* ── CONTACT ── */
+    #contact { background: var(--bg2); }
+    .contact-inner {
+      max-width: 600px;
+      background: var(--bg3); border: 1px solid var(--border);
+      border-radius: 16px; padding: 40px;
+    }
+    .contact-links { display: flex; flex-direction: column; gap: 14px; margin-top: 24px; }
+    .contact-link {
+      display: flex; align-items: center; gap: 14px;
+      padding: 14px 18px;
+      background: var(--bg2); border: 1px solid var(--border);
+      border-radius: 10px; text-decoration: none; color: var(--text);
+      transition: border-color .2s, transform .15s;
+    }
+    .contact-link:hover { border-color: var(--blue); transform: translateX(4px); }
+    .contact-link-icon { font-size: 18px; }
+    .contact-link-label { font-family: var(--mono); font-size: 11px; color: var(--muted); }
+    .contact-link-value { font-family: var(--sans); font-size: 14px; font-weight: 500; }
+
+    /* ── FOOTER ── */
+    footer {
+      text-align: center; padding: 28px;
+      font-family: var(--mono); font-size: 12px; color: var(--muted);
+      border-top: 1px solid var(--border);
+    }
+
+    /* ── SCROLL ANIMATIONS ── */
+    .reveal { opacity: 0; transform: translateY(28px); transition: opacity .6s ease, transform .6s ease; }
+    .reveal.visible { opacity: 1; transform: none; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 680px) {
+      .about-grid { grid-template-columns: 1fr; gap: 32px; }
+      nav { padding: 0 20px; }
+      .nav-links { gap: 18px; }
+      .nav-links a { font-size: 11px; }
+      section { padding: 64px 5vw; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation: none !important; transition: none !important; }
+      .reveal { opacity: 1; transform: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <span class="nav-logo">said@portfolio:~$</span>
+  <ul class="nav-links">
+    <li><a href="#about">Tentang</a></li>
+    <li><a href="#skills">Keahlian</a></li>
+    <li><a href="#experience">Pengalaman</a></li>
+    <li><a href="#projects">Proyek</a></li>
+    <li><a href="#contact">Kontak</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-glow"></div>
+  <div class="hero-inner">
+    <div class="hero-tag">Tersedia untuk peluang baru</div>
+    <h1 class="hero-name">
+      Said<br><span class="grad-text">Hamzah</span>
+    </h1>
+    <p class="hero-role"><span id="typed-role"></span></p>
+    <p class="hero-desc">
+      Lulusan S1 Teknik Informatika dengan passion membangun sistem internal berbasis web yang efisien — dari RESTful API hingga manajemen database — dan siap mendukung operasional IT perusahaan.
+    </p>
+    <div class="hero-cta">
+      <a href="#projects" class="btn btn-primary">Lihat Proyek →</a>
+      <a href="#contact" class="btn btn-ghost">Hubungi Saya</a>
+    </div>
+
+    <div class="terminal reveal">
+      <div class="terminal-bar">
+        <span class="dot dot-r"></span>
+        <span class="dot dot-y"></span>
+        <span class="dot dot-g"></span>
+        <span class="terminal-path">~/said-hamzah</span>
+      </div>
+      <div class="terminal-body">
+        <div class="t-line"><span class="t-prompt">▶</span><span class="t-cmd">whoami --verbose</span></div>
+        <div class="t-out"><span class="t-key">name:</span>        <span class="t-val">Said Hamzah</span></div>
+        <div class="t-out"><span class="t-key">role:</span>        <span class="t-val">Web Developer / IT Specialist</span></div>
+        <div class="t-out"><span class="t-key">stack:</span>       <span class="t-val">ASP.NET Core · Laravel · Python · SQL</span></div>
+        <div class="t-out"><span class="t-key">location:</span>    <span class="t-val">Karawang, Indonesia</span></div>
+        <div class="t-out"><span class="t-key">status:</span>      <span class="t-val" style="color:#4ADE80;">● open to work</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-label">01 — Tentang Saya</div>
+  <h2 class="section-title">Siapa Said Hamzah?</h2>
+  <div class="section-divider"></div>
+  <div class="about-grid reveal">
+    <div class="about-text">
+      <p>Saya adalah seorang developer dengan latar belakang S1 Teknik Informatika, berfokus pada pembangunan sistem web internal dan operasional IT. Saya senang memecahkan masalah nyata lewat kode yang bersih dan terstruktur.</p>
+      <p>Pengalaman saya mencakup pengembangan RESTful API, manajemen database relasional, serta implementasi role-based access control. Saya juga aktif mengembangkan kemampuan di bidang data analysis dan machine learning sebagai nilai tambah.</p>
+      <p>Di luar coding, saya terus belajar secara mandiri lewat kursus dan sertifikasi untuk memastikan skill saya selalu relevan dengan kebutuhan industri.</p>
+    </div>
+    <div class="info-list">
+      <div class="info-item">
+        <span class="info-icon">📍</span>
+        <div><div class="info-label">Lokasi</div><div class="info-value">Karawang, Jawa Barat, Indonesia</div></div>
+      </div>
+      <div class="info-item">
+        <span class="info-icon">🎓</span>
+        <div><div class="info-label">Pendidikan</div><div class="info-value">S1 Teknik Informatika — UBP Karawang</div></div>
+      </div>
+      <div class="info-item">
+        <span class="info-icon">📧</span>
+        <div><div class="info-label">Email</div><div class="info-value">saidhamzah12@gmail.com</div></div>
+      </div>
+      <div class="info-item">
+        <span class="info-icon">📱</span>
+        <div><div class="info-label">Telepon</div><div class="info-value">0857-7886-7354</div></div>
+      </div>
+      <div class="info-item">
+        <span class="info-icon">🏅</span>
+        <div><div class="info-label">Sertifikasi Utama</div><div class="info-value">Junior Web Developer — BNSP 2023</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-label">02 — Keahlian</div>
+  <h2 class="section-title">Tech Stack & Kemampuan</h2>
+  <div class="section-divider"></div>
+  <div class="skills-grid reveal">
+    <div class="skill-card">
+      <div class="skill-card-title">⚙️ Systems & Applications</div>
+      <div class="skill-tags">
+        <span class="skill-tag">ASP.NET Core</span>
+        <span class="skill-tag">PHP</span>
+        <span class="skill-tag">Laravel</span>
+        <span class="skill-tag">RESTful API</span>
+        <span class="skill-tag">CRUD</span>
+        <span class="skill-tag">User Auth</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-card-title">🗄️ Database</div>
+      <div class="skill-tags">
+        <span class="skill-tag">SQL Server</span>
+        <span class="skill-tag">PostgreSQL</span>
+        <span class="skill-tag">MySQL</span>
+        <span class="skill-tag">Entity Framework</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-card-title">📊 Data & Automation</div>
+      <div class="skill-tags">
+        <span class="skill-tag">Python</span>
+        <span class="skill-tag">Data Visualization</span>
+        <span class="skill-tag">OCR</span>
+        <span class="skill-tag">Random Forest</span>
+        <span class="skill-tag">SVM</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-card-title">🛠️ IT & Operations</div>
+      <div class="skill-tags">
+        <span class="skill-tag">User Support</span>
+        <span class="skill-tag">Troubleshooting</span>
+        <span class="skill-tag">Data Management</span>
+        <span class="skill-tag">Reporting</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-card-title">🔧 Tools</div>
+      <div class="skill-tags">
+        <span class="skill-tag">Git</span>
+        <span class="skill-tag">Microsoft Excel</span>
+        <span class="skill-tag">Tailwind CSS</span>
+        <span class="skill-tag">VS Code</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-card-title">🧠 Sedang Dipelajari</div>
+      <div class="skill-tags">
+        <span class="skill-tag">C# Advanced</span>
+        <span class="skill-tag">Deep Learning</span>
+        <span class="skill-tag">Data Analysis</span>
+        <span class="skill-tag">SQL Advanced</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-label">03 — Pengalaman</div>
+  <h2 class="section-title">Riwayat Kerja & Organisasi</h2>
+  <div class="section-divider"></div>
+  <div class="timeline reveal">
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="tl-company">Badan Narkotika Nasional (BNN) Karawang Regency</div>
+      <div class="tl-role">Web Developer — Magang</div>
+      <div class="tl-date">Oktober 2023 — Desember 2023</div>
+      <ul class="tl-list">
+        <li>Membantu pengembangan dan pemeliharaan aplikasi web internal instansi pemerintah</li>
+        <li>Berkontribusi dalam manajemen database dan mendukung pengujian serta debugging sistem</li>
+        <li>Berkolaborasi dengan tim untuk meningkatkan performa aplikasi dan memastikan fungsionalitas yang andal</li>
+      </ul>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="tl-company">Himpunan Mahasiswa Teknik Informatika UBP — Divisi Riset & Teknologi</div>
+      <div class="tl-role">Anggota Aktif</div>
+      <div class="tl-date">Januari 2023 — Desember 2023</div>
+      <ul class="tl-list">
+        <li>Mengembangkan fitur CRUD untuk aplikasi web dan mendukung tim frontend dalam implementasi fitur baru</li>
+        <li>Mengorganisir dan berpartisipasi dalam sesi pelatihan dan seminar pemrograman</li>
+      </ul>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="tl-company">Mandiri / Self-Development</div>
+      <div class="tl-role">Pengembangan Diri</div>
+      <div class="tl-date">Agustus 2025 — Juni 2026</div>
+      <ul class="tl-list">
+        <li>Menyelesaikan Ultimate C# Masterclass 2026 di Udemy (48 jam)</li>
+        <li>Menyelesaikan Complete Data Analyst Bootcamp From Basics to Advanced (89 jam)</li>
+        <li>Menyelesaikan Neural Networks and Deep Learning via DeepLearning.AI / Coursera</li>
+        <li>Aktif mengembangkan kemampuan SQL, data analysis, dan system development secara mandiri</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-label">04 — Proyek</div>
+  <h2 class="section-title">Proyek IT Personal</h2>
+  <div class="section-divider"></div>
+  <div class="projects-grid reveal">
+    <div class="project-card">
+      <div class="proj-icon">📦</div>
+      <div class="proj-title">Office Supplies Management System</div>
+      <div class="proj-period">Oktober 2025 — Desember 2025</div>
+      <p class="proj-desc">
+        Sistem manajemen inventaris alat tulis kantor dengan alur stock-in/stock-out, pelacakan riwayat, pelaporan otomatis, dan role-based access control untuk operasional yang terstruktur.
+      </p>
+      <div class="proj-tech">
+        <span class="proj-badge">ASP.NET Core</span>
+        <span class="proj-badge">Entity Framework</span>
+        <span class="proj-badge">Tailwind CSS</span>
+        <span class="proj-badge">SQL Server</span>
+      </div>
+    </div>
+    <div class="project-card">
+      <div class="proj-icon">🤖</div>
+      <div class="proj-title">Klasifikasi ML — Skripsi</div>
+      <div class="proj-period">2024 — 2025</div>
+      <p class="proj-desc">
+        Penelitian analisis data menggunakan machine learning: evaluasi dan perbandingan model klasifikasi Random Forest dan SVM untuk mengidentifikasi performa terbaik pada dataset yang diuji.
+      </p>
+      <div class="proj-tech">
+        <span class="proj-badge">Python</span>
+        <span class="proj-badge">Random Forest</span>
+        <span class="proj-badge">SVM</span>
+        <span class="proj-badge">Data Analysis</span>
+      </div>
+    </div>
+    <div class="project-card">
+      <div class="proj-icon">🌐</div>
+      <div class="proj-title">Aplikasi Web Internal BNN</div>
+      <div class="proj-period">Oktober 2023 — Desember 2023</div>
+      <p class="proj-desc">
+        Kontribusi pada pengembangan dan pemeliharaan sistem web internal instansi pemerintah — mencakup manajemen database, debugging, dan optimasi performa aplikasi.
+      </p>
+      <div class="proj-tech">
+        <span class="proj-badge">PHP</span>
+        <span class="proj-badge">Laravel</span>
+        <span class="proj-badge">MySQL</span>
+        <span class="proj-badge">RESTful API</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<section id="certifications">
+  <div class="section-label">05 — Sertifikasi</div>
+  <h2 class="section-title">Sertifikasi & Lisensi</h2>
+  <div class="section-divider"></div>
+  <div class="cert-grid reveal">
+    <div class="cert-card">
+      <span class="cert-icon">🏅</span>
+      <div>
+        <div class="cert-name">Junior Web Developer</div>
+        <div class="cert-issuer">BNSP — No: 62010 2513 4 0005643 2023</div>
+        <div class="cert-date">Oktober 2023 · berlaku s/d Oktober 2026</div>
+      </div>
+    </div>
+    <div class="cert-card">
+      <span class="cert-icon">🎓</span>
+      <div>
+        <div class="cert-name">Ultimate C# Masterclass 2026</div>
+        <div class="cert-issuer">Udemy · ID: UC-edecaa16-2de6-4224-8d18</div>
+        <div class="cert-date">Januari 2026 · 48 jam</div>
+      </div>
+    </div>
+    <div class="cert-card">
+      <span class="cert-icon">🧠</span>
+      <div>
+        <div class="cert-name">Neural Networks and Deep Learning</div>
+        <div class="cert-issuer">DeepLearning.AI via Coursera</div>
+        <div class="cert-date">Desember 2025</div>
+      </div>
+    </div>
+    <div class="cert-card">
+      <span class="cert-icon">📊</span>
+      <div>
+        <div class="cert-name">Complete Data Analyst Bootcamp</div>
+        <div class="cert-issuer">Udemy · ID: UC-bdc81037-c1b1-4870-9116</div>
+        <div class="cert-date">Oktober 2025 · 89 jam</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+  <div class="section-label">06 — Pendidikan</div>
+  <h2 class="section-title">Latar Belakang Akademik</h2>
+  <div class="section-divider"></div>
+  <div class="edu-card reveal">
+    <div class="edu-degree">S1 Teknik Informatika</div>
+    <div class="edu-univ">Universitas Buana Perjuangan Karawang</div>
+    <div class="edu-date">September 2021 — Agustus 2025</div>
+    <div class="edu-items">
+      <div class="edu-item">
+        <span>▸</span>
+        <span>Skripsi: Analisis Data dengan Machine Learning — Evaluasi model klasifikasi menggunakan Random Forest dan SVM</span>
+      </div>
+      <div class="edu-item">
+        <span>▸</span>
+        <span>Pengolahan dan analisis data menggunakan Python</span>
+      </div>
+      <div class="edu-item">
+        <span>▸</span>
+        <span>Aktif di Himpunan Mahasiswa Teknik Informatika, Divisi Riset & Teknologi</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-label">07 — Kontak</div>
+  <h2 class="section-title">Mari Terhubung</h2>
+  <div class="section-divider"></div>
+  <div class="contact-inner reveal">
+    <p style="color:var(--muted); margin-bottom:8px;">Terbuka untuk peluang kerja, kolaborasi, maupun diskusi proyek. Jangan ragu untuk menghubungi saya!</p>
+    <div class="contact-links">
+      <a href="mailto:saidhamzah12@gmail.com" class="contact-link">
+        <span class="contact-link-icon">📧</span>
+        <div>
+          <div class="contact-link-label">Email</div>
+          <div class="contact-link-value">saidhamzah12@gmail.com</div>
+        </div>
+      </a>
+      <a href="tel:+6285778867354" class="contact-link">
+        <span class="contact-link-icon">📱</span>
+        <div>
+          <div class="contact-link-label">WhatsApp / Telepon</div>
+          <div class="contact-link-value">0857-7886-7354</div>
+        </div>
+      </a>
+      <a href="https://linkedin.com" target="_blank" rel="noopener" class="contact-link">
+        <span class="contact-link-icon">💼</span>
+        <div>
+          <div class="contact-link-label">LinkedIn</div>
+          <div class="contact-link-value">linkedin.com/in/said-hamzah</div>
+        </div>
+      </a>
+      <a href="https://github.com" target="_blank" rel="noopener" class="contact-link">
+        <span class="contact-link-icon">🐙</span>
+        <div>
+          <div class="contact-link-label">GitHub</div>
+          <div class="contact-link-value">github.com/said-hamzah</div>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span>Built with ♥ by Said Hamzah · 2025</span>
+</footer>
+
+<script>
+  // ── Typed role animation ──
+  const roles = [
+    'Web Developer',
+    'IT Specialist',
+    'ASP.NET Core Developer',
+    'Laravel Developer',
+    'Data Enthusiast',
+  ];
+  let ri = 0, ci = 0, deleting = false;
+  const el = document.getElementById('typed-role');
+  function typeLoop() {
+    const word = roles[ri];
+    if (!deleting) {
+      el.textContent = word.slice(0, ++ci);
+      if (ci === word.length) { deleting = true; setTimeout(typeLoop, 1800); return; }
+    } else {
+      el.textContent = word.slice(0, --ci);
+      if (ci === 0) { deleting = false; ri = (ri + 1) % roles.length; setTimeout(typeLoop, 300); return; }
+    }
+    setTimeout(typeLoop, deleting ? 40 : 75);
+  }
+  typeLoop();
+
+  // ── Scroll reveal ──
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+  // ── Active nav highlight ──
+  const sections = document.querySelectorAll('section[id]');
+  const links = document.querySelectorAll('.nav-links a');
+  window.addEventListener('scroll', () => {
+    let cur = '';
+    sections.forEach(s => { if (window.scrollY >= s.offsetTop - 100) cur = s.id; });
+    links.forEach(a => {
+      a.style.color = a.getAttribute('href') === '#' + cur ? 'var(--text)' : '';
+    });
+  });
+</script>
+</body>
+</html>
