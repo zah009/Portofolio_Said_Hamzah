@@ -287,6 +287,26 @@
       border: 1px solid rgba(6,182,212,0.2);
       padding: 3px 10px; border-radius: 20px;
     }
+    .proj-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; }
+    .status-badge {
+      font-family: var(--mono); font-size: 10.5px; font-weight: 600;
+      padding: 4px 10px; border-radius: 20px; white-space: nowrap;
+      display: inline-flex; align-items: center; gap: 6px;
+    }
+    .status-badge .dot { width: 6px; height: 6px; border-radius: 50%; }
+    .status-live { background: rgba(74,222,128,0.12); color: #4ADE80; }
+    .status-live .dot { background: #4ADE80; }
+    .status-demo { background: rgba(59,130,246,0.12); color: var(--blue); }
+    .status-demo .dot { background: var(--blue); }
+    .proj-links { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 16px; }
+    .proj-link-btn {
+      font-family: var(--sans); font-size: 12.5px; font-weight: 600;
+      padding: 8px 14px; border-radius: 8px; text-decoration: none;
+      border: 1px solid var(--border); color: var(--text);
+      transition: transform .15s, border-color .15s;
+    }
+    .proj-link-btn.primary { background: var(--grad); color: #fff; border: none; }
+    .proj-link-btn:hover { transform: translateY(-2px); border-color: var(--blue); }
 
     /* ── CERTIFICATIONS ── */
     #certifications { background: var(--bg2); }
@@ -374,12 +394,13 @@
 
 <!-- NAV -->
 <nav>
-  
+  <div class="nav-logo">sh<span style="color:var(--blue)">.</span>dev</div>
   <ul class="nav-links">
     <li><a href="#about">Tentang</a></li>
     <li><a href="#skills">Keahlian</a></li>
     <li><a href="#experience">Pengalaman</a></li>
     <li><a href="#projects">Proyek</a></li>
+    <li><a href="#github-projects">GitHub</a></li>
     <li><a href="#contact">Kontak</a></li>
   </ul>
 </nav>
@@ -412,7 +433,9 @@
         <div class="t-line"><span class="t-prompt">▶</span><span class="t-cmd">whoami --verbose</span></div>
         <div class="t-out"><span class="t-key">name:</span>        <span class="t-val">Said Hamzah</span></div>
         <div class="t-out"><span class="t-key">role:</span>        <span class="t-val">Web Developer / IT Specialist</span></div>
-        <div class="t-out"><span class="t-key">stack:</span>       <span class="t-val">ASP.NET Core · Laravel · Python · SQL</span></div>
+        <div class="t-out"><span class="t-key">stack:</span>       <span class="t-val">ASP.NET Core · Laravel · CodeIgniter 4 · MySQL</span></div>
+        <div class="t-out"><span class="t-key">cloud:</span>       <span class="t-val">AWS EC2 · S3 · CloudFront</span></div>
+        <div class="t-out"><span class="t-key">it-support:</span>  <span class="t-val">Windows install/reinstall · data backup · hardware troubleshooting</span></div>
         <div class="t-out"><span class="t-key">location:</span>    <span class="t-val">Karawang, Indonesia</span></div>
         <div class="t-out"><span class="t-key">status:</span>      <span class="t-val" style="color:#4ADE80;">● open to work</span></div>
       </div>
@@ -430,6 +453,7 @@
       <p>Saya adalah seorang developer dengan latar belakang S1 Teknik Informatika, berfokus pada pembangunan sistem web internal dan operasional IT. Saya senang memecahkan masalah nyata lewat kode yang bersih dan terstruktur.</p>
       <p>Pengalaman saya mencakup pengembangan RESTful API, manajemen database relasional, serta implementasi role-based access control. Saya juga aktif mengembangkan kemampuan di bidang data analysis dan machine learning sebagai nilai tambah.</p>
       <p>Di luar coding, saya terus belajar secara mandiri lewat kursus dan sertifikasi untuk memastikan skill saya selalu relevan dengan kebutuhan industri.</p>
+      <p>Selain pengembangan software, saya juga terbiasa menangani sisi IT operasional secara langsung: instalasi ulang & konfigurasi Windows, backup dan restore data, hingga troubleshooting hardware PC/laptop. Kombinasi ini membuat saya nyaman berada di posisi yang membutuhkan pemahaman software sekaligus hardware.</p>
     </div>
     <div class="info-list">
       <div class="info-item">
@@ -468,6 +492,7 @@
         <span class="skill-tag">ASP.NET Core</span>
         <span class="skill-tag">PHP</span>
         <span class="skill-tag">Laravel</span>
+        <span class="skill-tag">CodeIgniter 4</span>
         <span class="skill-tag">RESTful API</span>
         <span class="skill-tag">CRUD</span>
         <span class="skill-tag">User Auth</span>
@@ -476,10 +501,29 @@
     <div class="skill-card">
       <div class="skill-card-title">🗄️ Database</div>
       <div class="skill-tags">
+        <span class="skill-tag">MySQL</span>
         <span class="skill-tag">SQL Server</span>
         <span class="skill-tag">PostgreSQL</span>
-        <span class="skill-tag">MySQL</span>
         <span class="skill-tag">Entity Framework</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-card-title">☁️ Cloud & Infrastructure</div>
+      <div class="skill-tags">
+        <span class="skill-tag">AWS EC2</span>
+        <span class="skill-tag">AWS S3</span>
+        <span class="skill-tag">CloudFront</span>
+        <span class="skill-tag">Nginx</span>
+        <span class="skill-tag">Linux / Ubuntu</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-card-title">🖥️ IT Support & Hardware</div>
+      <div class="skill-tags">
+        <span class="skill-tag">Install Ulang Windows</span>
+        <span class="skill-tag">Backup & Restore Data</span>
+        <span class="skill-tag">Hardware Troubleshooting</span>
+        <span class="skill-tag">PC/Laptop Repair</span>
       </div>
     </div>
     <div class="skill-card">
@@ -571,17 +615,24 @@
   <div class="section-divider"></div>
   <div class="projects-grid reveal">
     <div class="project-card">
-      <div class="proj-icon">📦</div>
+      <div class="proj-top">
+        <div class="proj-icon">📦</div>
+        <span class="status-badge status-demo"><span class="dot"></span>DEMO</span>
+      </div>
       <div class="proj-title">Office Supplies Management System</div>
       <div class="proj-period">Oktober 2025 — Desember 2025</div>
       <p class="proj-desc">
-        Sistem manajemen inventaris alat tulis kantor dengan alur stock-in/stock-out, pelacakan riwayat, pelaporan otomatis, dan role-based access control untuk operasional yang terstruktur.
+        Sistem manajemen inventaris alat tulis kantor dengan alur stock-in/stock-out, pelacakan riwayat, pelaporan otomatis, dan role-based access control. Backend API di ASP.NET Core, frontend terpisah di React.
       </p>
       <div class="proj-tech">
         <span class="proj-badge">ASP.NET Core</span>
         <span class="proj-badge">Entity Framework</span>
-        <span class="proj-badge">Tailwind CSS</span>
+        <span class="proj-badge">React</span>
         <span class="proj-badge">SQL Server</span>
+      </div>
+      <div class="proj-links">
+        <a class="proj-link-btn" href="https://github.com/zah009/SistemInventory_ATK_API_ASPdotNet" target="_blank" rel="noopener">API Repo</a>
+        <a class="proj-link-btn" href="https://github.com/zah009/atk-inventory-react" target="_blank" rel="noopener">Frontend Repo</a>
       </div>
     </div>
     <div class="project-card">
@@ -612,6 +663,78 @@
         <span class="proj-badge">RESTful API</span>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- GITHUB PROJECTS -->
+<section id="github-projects" style="background: var(--bg2);">
+  <div class="section-label">04.1 — Repository</div>
+  <h2 class="section-title">Proyek Personal di GitHub</h2>
+  <div class="section-divider"></div>
+  <div class="projects-grid reveal">
+
+    <div class="project-card">
+      <div class="proj-top">
+        <div class="proj-icon">🎫</div>
+        <span class="status-badge status-live"><span class="dot"></span>LIVE</span>
+      </div>
+      <div class="proj-title">SIGAP — Sistem Helpdesk & Ticketing</div>
+      <div class="proj-period">Deployed di AWS EC2</div>
+      <p class="proj-desc">
+        Sistem pelaporan & tiket internal — pengguna mengajukan laporan, tim terkait melacak status penyelesaian dari open sampai closed, lengkap dengan role dan log aktivitas.
+      </p>
+      <div class="proj-tech">
+        <span class="proj-badge">CodeIgniter 4</span>
+        <span class="proj-badge">MySQL</span>
+        <span class="proj-badge">Nginx</span>
+        <span class="proj-badge">AWS EC2</span>
+      </div>
+      <div class="proj-links">
+        <a class="proj-link-btn primary" href="https://sigap.portosaid.site" target="_blank" rel="noopener">Buka Live Demo ↗</a>
+        <a class="proj-link-btn" href="https://github.com/zah009/SIGAP" target="_blank" rel="noopener">Source Code</a>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="proj-top">
+        <div class="proj-icon">💳</div>
+        <span class="status-badge status-demo"><span class="dot"></span>DEMO</span>
+      </div>
+      <div class="proj-title">Payment Gateway API</div>
+      <div class="proj-period">E-Commerce Backend</div>
+      <p class="proj-desc">
+        REST API backend e-commerce terintegrasi Midtrans — mengelola order, status pembayaran real-time via webhook, dan riwayat transaksi dengan arsitektur berlapis.
+      </p>
+      <div class="proj-tech">
+        <span class="proj-badge">Laravel 11</span>
+        <span class="proj-badge">Midtrans</span>
+        <span class="proj-badge">REST API</span>
+      </div>
+      <div class="proj-links">
+        <a class="proj-link-btn" href="https://github.com/zah009/Payment_Gateway_API-E-Commerce-Backend_Laravel-11" target="_blank" rel="noopener">Source Code</a>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="proj-top">
+        <div class="proj-icon">📋</div>
+        <span class="status-badge status-demo"><span class="dot"></span>DEMO</span>
+      </div>
+      <div class="proj-title">ATK Inventory — Laravel</div>
+      <div class="proj-period">Versi Laravel</div>
+      <p class="proj-desc">
+        Sistem pencatatan stok alat tulis kantor: masuk/keluar barang, notifikasi stok menipis, dan laporan penggunaan per divisi — versi Laravel dari sistem inventory ATK.
+      </p>
+      <div class="proj-tech">
+        <span class="proj-badge">Laravel</span>
+        <span class="proj-badge">MySQL</span>
+        <span class="proj-badge">Blade</span>
+      </div>
+      <div class="proj-links">
+        <a class="proj-link-btn" href="https://github.com/zah009/atk_laravel" target="_blank" rel="noopener">Source Code</a>
+      </div>
+    </div>
+
   </div>
 </section>
 
@@ -732,8 +855,9 @@
     'Web Developer',
     'IT Specialist',
     'ASP.NET Core Developer',
-    'Laravel Developer',
-    'Data Enthusiast',
+    'Laravel & CodeIgniter Developer',
+    'AWS Cloud Enthusiast',
+    'Hardware Troubleshooter',
   ];
   let ri = 0, ci = 0, deleting = false;
   const el = document.getElementById('typed-role');
